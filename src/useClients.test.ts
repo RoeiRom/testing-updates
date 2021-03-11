@@ -16,6 +16,19 @@ const defaultClientDBMock = {
 
 const mainClient = new ApolloClient({link: from([]), cache: new InMemoryCache()})
 
+const defaultSubscriptionResult = {
+    subscriptionData: {
+        data: {
+            listen: {
+                relatedNode: {}
+            }
+        },
+        loading: false,
+        // @ts-ignore
+        client: mainClient
+    }
+}
+
 const dbMocks : MockedResponse[] = [
     {
         request: {
@@ -32,6 +45,41 @@ const dbMocks : MockedResponse[] = [
                             id: 2
                         }
                     ]
+                }
+            }
+        }
+    },
+    {
+        request: {
+            query: NEW_CLIENT_SUBSCRIPTION
+        },
+        result: {
+            data: defaultSubscriptionResult
+        }
+    },
+    {
+        request: {
+            query: UPDATED_CLIENT_SUBSCRIPTION
+        },
+        result: {
+            data: defaultSubscriptionResult
+        }
+    },
+    {
+        request: {
+            query: DELETED_CLIENT_SUBSCRIPTION
+        },
+        result: {
+            data: {
+                subscriptionData: {
+                    data: {
+                        deletedClient: {
+                            id: 1
+                        }
+                    },
+                    loading: false,
+                    // @ts-ignore
+                    client: mainClient
                 }
             }
         }
