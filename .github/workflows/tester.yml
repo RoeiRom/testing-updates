@@ -1,0 +1,15 @@
+on: push
+
+jobs:
+  first_job:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        name: Setup node
+        with:
+         node-version: '8'
+      - name: Installing Dependencies
+        run:  npm install
+      - name: Running tests
+        run: npm test
