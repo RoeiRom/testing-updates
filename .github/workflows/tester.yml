@@ -8,7 +8,7 @@ jobs:
       - uses: actions/setup-node@v1
         name: Setup node
         with:
-         node-version: '12'
+         node-version: '8'
       - name: Installing Dependencies
         run:  npm install
       - name: Running tests
